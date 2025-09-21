@@ -1,73 +1,85 @@
-# Welcome to your Lovable project
+Certainly! Here's an updated **README** tailored for your project, now deployed as a React + Vite application:
 
-## Project info
+---
 
-**URL**: https://lovable.dev/projects/e1339acc-0219-4a60-89e2-573287844e6c
+# Req2Test.AI – AI-Powered Healthcare Test Case Generator
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+**Req2Test.AI** is an AI-driven solution that automates the generation of test cases for healthcare software from natural-language requirements. It interprets complex healthcare specifications, generates structured JSON test cases, maintains full requirement-to-test traceability, and supports integration with enterprise toolchains like Jira, Polarion, and Azure DevOps. The system also supports GDPR-compliant testing using synthetic datasets.
 
-**Use Lovable**
+This project is deployed as a React + Vite application with a user-friendly interface for uploading requirements, generating test cases, reviewing them, and exporting to downstream workflows.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e1339acc-0219-4a60-89e2-573287844e6c) and start prompting.
+🔗 Live Demo: [https://req2testai.lovable.app/](https://req2testai.lovable.app/)
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## Project Structure
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* **src/** – Main React application code
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+  * **components/** – Reusable UI components
+  * **pages/** – Page-level components and routes
+  * **services/** – Backend API calls, AI integration logic
+* **backend/** – Python backend code for AI test case generation, requirement ingestion, and database operations
+* **database/** – SQLite database file (`traceability.db`) storing generated test cases and traceability data
+* **sample\_testcases.json** – Offline test case samples for demo mode
+
+---
+
+## Technologies Used
+
+* **Frontend:** React, Vite, TypeScript, Tailwind CSS, shadcn-ui
+* **Backend:** Python (FastAPI/Flask optional), Vertex AI, Gemini AI
+* **Database:** SQLite (for traceability), BigQuery (optional for large-scale deployments)
+* **APIs & Toolchain Integration:** Jira, Polarion, Azure DevOps
+
+---
+
+## How to Run the Project Locally
+
+To work with the code locally, ensure you have **Node.js** and **npm** installed. You can install Node.js using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 Follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Step 1: Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Step 2: Navigate to the project folder
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+After running the dev server, the app will be accessible in your browser, typically at `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+To deploy the app:
 
-## What technologies are used for this project?
+```bash
+# Build the React + Vite app
+npm run build
 
-This project is built with:
+# Serve the production build
+npm run preview
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+You can deploy the app to any standard React hosting platform (Vercel, Netlify, Firebase Hosting, etc.).
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/e1339acc-0219-4a60-89e2-573287844e6c) and click on Share -> Publish.
+## License
 
-## Can I connect a custom domain to my Lovable project?
+This project is released under the MIT License.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+If you need further assistance or have any questions, feel free to ask!
