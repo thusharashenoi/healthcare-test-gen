@@ -25,18 +25,18 @@ export const RequirementsList = ({
   generatedTestCases 
 }: RequirementsListProps) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <FileText className="w-5 h-5 text-primary" />
-          <h3 className="text-lg font-semibold">Requirements ({requirements.length})</h3>
+          <FileText className="w-4 h-4 text-primary" />
+          <h3 className="font-semibold">Requirements ({requirements.length})</h3>
         </div>
-        <Badge variant="secondary">
-          {requirements.slice(0, 5).length} of {requirements.length} shown
+        <Badge variant="secondary" className="text-xs">
+          {requirements.slice(0, 5).length} of {requirements.length}
         </Badge>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid gap-3">
         {requirements.slice(0, 5).map((req) => {
           const isGenerating = generatingFor === req.req_id;
           const hasGenerated = generatedTestCases.has(req.req_id);
@@ -45,11 +45,11 @@ export const RequirementsList = ({
             <Card 
               key={req.req_id} 
               className={cn(
-                "p-6 transition-all duration-300 hover:shadow-card animate-slide-up",
-                isGenerating && "ring-2 ring-primary/50"
+                "p-4 transition-all duration-300 animate-slide-up",
+                isGenerating && "ring-1 ring-primary/50"
               )}
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-start justify-between">
                   <div className="space-y-2 flex-1">
                     <div className="flex items-center space-x-2">
@@ -57,21 +57,21 @@ export const RequirementsList = ({
                         {req.req_id}
                       </Badge>
                       {hasGenerated && (
-                        <Badge variant="default" className="bg-success text-success-foreground">
+                        <Badge variant="default" className="bg-success text-success-foreground text-xs">
                           <CheckCircle className="w-3 h-3 mr-1" />
-                          Generated
+                          Done
                         </Badge>
                       )}
                     </div>
-                    <h4 className="font-medium text-foreground leading-relaxed">
+                    <h4 className="text-sm font-medium text-foreground leading-relaxed">
                       {req.text}
                     </h4>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-card-border">
+                <div className="flex items-center justify-between pt-2 border-t border-border">
                   <div className="text-xs text-muted-foreground">
-                    Healthcare requirement • Click to generate test case
+                    Click to generate test case
                   </div>
                   
                   <Button
@@ -109,13 +109,9 @@ export const RequirementsList = ({
       </div>
 
       {requirements.length > 5 && (
-        <Card className="p-4 border-dashed">
-          <div className="text-center text-muted-foreground">
-            <p className="text-sm">
-              Showing first 5 requirements. Total: {requirements.length}
-            </p>
-          </div>
-        </Card>
+        <div className="text-center text-xs text-muted-foreground py-2">
+          Showing first 5 of {requirements.length} requirements
+        </div>
       )}
     </div>
   );

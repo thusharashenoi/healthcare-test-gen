@@ -91,58 +91,37 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background p-6">
       {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Stethoscope className="w-8 h-8 text-primary" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  AI-Powered Test Case Generator
-                </h1>
-                <p className="text-sm text-muted-foreground">Healthcare Software POC</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <Badge variant="secondary" className="hidden md:flex">
-                <Brain className="w-3 h-3 mr-1" />
-                Healthcare Testing
-              </Badge>
-              {mode === 'gemini' && (
-                <Badge variant="outline" className="text-warning border-warning">
-                  <AlertTriangle className="w-3 h-3 mr-1" />
-                  Requires Supabase
-                </Badge>
-              )}
+      <div className="max-w-7xl mx-auto mb-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Stethoscope className="w-6 h-6 text-primary" />
+            <div>
+              <h1 className="text-xl font-semibold">AI Test Case Generator</h1>
+              <p className="text-sm text-muted-foreground">Healthcare Software POC</p>
             </div>
           </div>
+          <ModeSelector mode={mode} onModeChange={setMode} />
         </div>
-      </header>
+      </div>
 
-      <main className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-          {/* Left Column - Upload & Generation */}
-          <div className="space-y-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left Column - Upload & Requirements */}
+          <div className="space-y-4">
             {/* AI Mode Notice */}
             {mode === 'gemini' && (
-              <Alert className="border-warning bg-warning/5">
+              <Alert className="border-warning bg-warning/10">
                 <AlertTriangle className="h-4 w-4" />
-                <AlertDescription>
-                  <strong>Live AI Generation requires backend setup.</strong> Connect to Supabase to enable Gemini AI test case generation with API keys and edge functions.
+                <AlertDescription className="text-sm">
+                  Live AI requires Supabase connection for Gemini API access.
                 </AlertDescription>
               </Alert>
             )}
 
             {/* File Upload */}
             <FileUploader onFileUpload={handleFileUpload} />
-
-            {/* Mode Selection */}
-            <ModeSelector mode={mode} onModeChange={setMode} />
 
             {/* Requirements List */}
             {requirements.length > 0 && (
@@ -156,18 +135,12 @@ const Index = () => {
 
             {/* Empty State */}
             {requirements.length === 0 && (
-              <Card className="p-12 text-center border-dashed border-2">
-                <div className="space-y-4">
-                  <div className="mx-auto w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center">
-                    <Stethoscope className="w-8 h-8 text-muted-foreground" />
-                  </div>
+              <Card className="p-8 text-center border-dashed border-2">
+                <div className="space-y-3">
+                  <Stethoscope className="w-12 h-12 text-muted-foreground mx-auto" />
                   <div>
-                    <h3 className="text-lg font-semibold text-muted-foreground">
-                      No Requirements Uploaded
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Upload a requirements file to start generating test cases
-                    </p>
+                    <h3 className="font-medium text-muted-foreground">No Requirements</h3>
+                    <p className="text-sm text-muted-foreground">Upload a file to start</p>
                   </div>
                 </div>
               </Card>
@@ -175,7 +148,7 @@ const Index = () => {
           </div>
 
           {/* Right Column - Test Case Viewer */}
-          <div className="space-y-6">
+          <div>
             {currentTestCase ? (
               <TestCaseViewer
                 testCase={currentTestCase}
@@ -183,25 +156,19 @@ const Index = () => {
                 onSave={saveTestCase}
               />
             ) : (
-              <Card className="p-12 text-center border-dashed border-2">
-                <div className="space-y-4">
-                  <div className="mx-auto w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center">
-                    <CheckCircle2 className="w-8 h-8 text-muted-foreground" />
-                  </div>
+              <Card className="p-8 text-center border-dashed border-2">
+                <div className="space-y-3">
+                  <CheckCircle2 className="w-12 h-12 text-muted-foreground mx-auto" />
                   <div>
-                    <h3 className="text-lg font-semibold text-muted-foreground">
-                      No Test Case Generated
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Generate a test case from requirements to view it here
-                    </p>
+                    <h3 className="font-medium text-muted-foreground">No Test Case</h3>
+                    <p className="text-sm text-muted-foreground">Generate from requirements</p>
                   </div>
                 </div>
               </Card>
             )}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };

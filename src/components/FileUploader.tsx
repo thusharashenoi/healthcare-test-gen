@@ -60,10 +60,10 @@ export const FileUploader = ({ onFileUpload }: FileUploaderProps) => {
   }, [processFile]);
 
   return (
-    <Card className="p-8 border-dashed border-2 transition-all duration-300 hover:shadow-card">
+    <Card className="p-4 border-dashed border-2 transition-all duration-300">
       <div
         className={cn(
-          "text-center space-y-4 transition-all duration-300",
+          "text-center space-y-3 transition-all duration-300",
           isDragOver && "scale-105"
         )}
         onDragOver={(e) => {
@@ -74,26 +74,26 @@ export const FileUploader = ({ onFileUpload }: FileUploaderProps) => {
         onDrop={handleDrop}
       >
         <div className={cn(
-          "mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300",
+          "mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300",
           isDragOver && "bg-primary/20",
           isLoading && "animate-pulse-subtle"
         )}>
           {isLoading ? (
-            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+            <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           ) : (
             <Upload className={cn(
-              "w-8 h-8 text-primary transition-transform duration-300",
+              "w-6 h-6 text-primary transition-transform duration-300",
               isDragOver && "scale-110"
             )} />
           )}
         </div>
 
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-foreground">
-            Upload Requirements Document
+        <div className="space-y-1">
+          <h3 className="font-semibold text-foreground">
+            Upload Requirements
           </h3>
-          <p className="text-muted-foreground">
-            Drag and drop your .txt file here, or click to browse
+          <p className="text-sm text-muted-foreground">
+            Drop .txt file or click to browse
           </p>
         </div>
 
